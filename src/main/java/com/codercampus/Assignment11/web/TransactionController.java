@@ -18,7 +18,9 @@ public class TransactionController {
 	
 	@GetMapping("/transactions")
 	public List<Transaction> getTransactions() {
-		return service.sortTransactions();
+		List<Transaction> sortedTransactions = service.sortTransactions();
+		System.out.println(sortedTransactions);
+		return sortedTransactions;
 	}
 	
 //	@GetMapping("/transactions/{transactionId}")
