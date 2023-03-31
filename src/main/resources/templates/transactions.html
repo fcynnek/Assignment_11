@@ -46,12 +46,13 @@
             <td></td>
         </tr>
         <tr th:each="transaction : ${transactions}">
-            <!--<td><a th:href="@{/transactions/{transactionId(transactionId=${transaction.id})}">[[${transaction.id}]]</a></td>-->
-            <td>[[${transaction.id}]]</td>
+            <td><a th:href="@{/transactions/{transactionId}(transactionId=${transaction.id})}">[[${transaction.id}]]</a></td>
             <td>[[${transaction.date}]]</td>
             <td>[[${transaction.retailer}]]</td>
-            <td>[[th:if="${transaction.type == 'C'}" ${transaction.amount}]]</td>
-            <td>[[th:if="${transaction.type == 'D'}" ${transaction.amount}]]</td>
+            <td th:if="${transaction.type == 'C'}">[[${transaction.amount}]]</td>
+            <td th:if="${transaction.type == 'C'}"></td>
+            <td th:if="${transaction.type == 'D'}"></td>
+            <td th:if="${transaction.type == 'D'}">[[${transaction.amount}]]</td>
         </tr>
     </table>
 </body>
