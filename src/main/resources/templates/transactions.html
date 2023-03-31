@@ -50,8 +50,8 @@
             <td>[[${transaction.id}]]</td>
             <td>[[${transaction.date}]]</td>
             <td>[[${transaction.retailer}]]</td>
-            <td th:if="${transaction.type == 'C'}">[[${transaction.amount}]]</td>
-            <td th:if="${transaction.type == 'D'}">[[${transaction.amount}]]</td>
+            <td>[[th:if="${transaction.type == 'C'}" ${transaction.amount}]]</td>
+            <td>[[th:if="${transaction.type == 'D'}" ${transaction.amount}]]</td>
         </tr>
     </table>
 </body>
