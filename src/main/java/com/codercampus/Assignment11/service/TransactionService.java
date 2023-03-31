@@ -1,5 +1,7 @@
 package com.codercampus.Assignment11.service;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -16,14 +18,22 @@ public class TransactionService {
 	@Autowired
 	private TransactionRepository repository;
 	
-	public List<Transaction> sortTransactions() {
-		List<Transaction> sortedTransactions = this.sort(Comparator.comparing(Transaction::getDate));
-		return sortedTransactions;
-		
+	public List<Transaction> getTransactions() {
+		TransactionRepository repository = new TransactionRepository();
+		System.out.println(repository.findAll());
+		return repository.findAll();
 	}
 
-	private List<Transaction> sort(Comparator<Transaction> comparing) {
+	public Transaction findById(Long transactionId) {
+		Transaction transaction = new Transaction();
+		Long id = transaction.getId();
+		String retailer = transaction.getRetailer();
+		String description = transaction.getDescription();
+		LocalDateTime date = transaction.getDate();
+		BigDecimal amount = transaction.getAmount();
+		String type = transaction.getType();
 		
-		return null;
+		System.out.println("ta-da");
+		return findById(transactionId);
 	}
 }

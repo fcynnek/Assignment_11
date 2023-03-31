@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.codercampus.Assignment11.domain.Transaction;
 import com.codercampus.Assignment11.repository.TransactionRepository;
@@ -17,12 +19,18 @@ public class TransactionController {
 	private TransactionService service;
 	
 	@GetMapping("/transactions")
-	public List<Transaction> getTransactions() {
-		List<Transaction> sortedTransactions = service.sortTransactions();
-		System.out.println(sortedTransactions);
-		return sortedTransactions;
+	public List<Transaction> getTransactions(ModelMap model) {
+		List<Transaction> transactions = service.getTransactions();
+		Transaction transaction = new Transaction(); //from domain package
+		
+		model.put("transactions", transactions);
+		model.put("transaction", transaction);
+		return transactions;
 	}
 	
-//	@GetMapping("/transactions/{transactionId}")
-	
+	@GetMapping("/transactions/{transactionId}")
+	public Transaction getTransactionById(@PathVariable Long transactionId, ModelMap model) {
+		Transaction transaction = service.findById(transactionId);
+		return transaction;
+	}
 }
