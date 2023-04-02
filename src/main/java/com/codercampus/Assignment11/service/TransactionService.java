@@ -18,6 +18,9 @@ public class TransactionService {
 	@Autowired
 	private TransactionRepository repository;
 	
+	private Transaction domain = new Transaction();
+	
+	
 	public List<Transaction> getTransactions() {
 		TransactionRepository repository = new TransactionRepository();
 		System.out.println(repository.findAll());
@@ -25,15 +28,13 @@ public class TransactionService {
 	}
 
 	public Transaction findById(Long transactionId) {
-		Transaction transaction = new Transaction();
-		Long id = transaction.getId();
-		String retailer = transaction.getRetailer();
-		String description = transaction.getDescription();
-		LocalDateTime date = transaction.getDate();
-		BigDecimal amount = transaction.getAmount();
-		String type = transaction.getType();
+		List<Transaction> transactions = repository.findAll();
 		
-		System.out.println("ta-da");
-		return findById(transactionId);
+		for (Transaction transaction : transactions) {
+			if (transaction.getId().equals(transactionId)) {
+				return transaction;
+			}
+		}
+		return null;
 	}
 }
