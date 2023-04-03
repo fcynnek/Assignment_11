@@ -28,9 +28,10 @@ public class TransactionController {
 		return transactions;
 	}
 	
-	@GetMapping("/transactions/{transactionId}")
+	@GetMapping("/transactiondetail/{transactionId}")
 	public String getTransactionById(@PathVariable Long transactionId, ModelMap model) {
 		Transaction transaction = service.findById(transactionId);
-		return "redirect:/transactiondetail";
+		model.put("transaction", transaction);
+		return "transactiondetail";
 	}
 }
