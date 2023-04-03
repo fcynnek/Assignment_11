@@ -23,15 +23,22 @@ public class TransactionService {
 	
 	
 	public List<Transaction> getTransactions() {
-		TransactionRepository repository = new TransactionRepository();
+//		TransactionRepository repository = new TransactionRepository();
 //		System.out.println(repository.findAll());
 		System.out.println(sortTransactions());
-		return repository.findAll();
+		return sortTransactions();
 	}
 	
 	public List<Transaction> sortTransactions() {
-		Collections.sort(domain, (t1, t2) -> t1.getDate().compareTo(t2.getDate()));
-		return getTransactions();
+		List<Transaction> transactions = repository.findAll();
+		Collections.sort(transactions, new Comparator<Transaction>() {
+			
+			@Override
+			public int compare(Transaction t1, Transaction t2) {
+				return t1.getDate().compareTo(t2.getDate());
+			}
+		});
+		return transactions;
 	}
 
 	public Transaction findById(Long transactionId) {

@@ -16,7 +16,7 @@
         </tr>
         <!-- These 4 rows below are for demonstration purposes only
              You will need to edit the code below in order to make
-             it dynamically list ALL 100 transactions from the Repo -->
+             it dynamically list ALL 100 transactions from the Repo 
         <tr>
             <td><a href="/transactions/50">50</a></td>
             <td>2020-01-01T19:04:48</td>
@@ -44,7 +44,7 @@
             <td>Aldi</td>
             <td>38.50</td>
             <td></td>
-        </tr>
+        </tr> -->
         <tr th:each="transaction : ${transactions}">
             <td><a th:href="@{/transactiondetail/{transactionId}(transactionId=${transaction.id})}">[[${transaction.id}]]</a></td>
             <td>[[${transaction.date}]]</td>
